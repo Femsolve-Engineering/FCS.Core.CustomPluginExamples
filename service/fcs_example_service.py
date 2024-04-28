@@ -13,6 +13,24 @@ class ExampleBackendService(BackendService):
         super().__init__(service_name)
 
 #--------------------------------------------------------------------------------------------------
+# Startup and finishing stages
+#--------------------------------------------------------------------------------------------------
+
+    def run_on_startup(self) -> None:
+        """
+        When the frontend application has finished initializing, this method is called
+        to run on startup.
+        """
+        self.logger.log('Starting Example 1 Service!')
+
+    def run_on_shutdown(self) -> None:
+        """
+        When the container was triggered to be closed, then this method is called
+        to run a shutdown sequence on the existing data, if needed.
+        """
+        self.logger.log('Shutting down Example 1 Service!')
+
+#--------------------------------------------------------------------------------------------------
 # Custom command implementations
 #--------------------------------------------------------------------------------------------------
     
