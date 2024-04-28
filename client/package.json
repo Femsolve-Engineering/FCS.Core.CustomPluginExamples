@@ -9,7 +9,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "fcs-core-viewer": "^0.9.2"
+        "fcs-core-viewer": "latest"
     },
     "devDependencies": {
         "ts-loader": "^9.5.1",
