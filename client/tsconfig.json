@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "target": "ES6",
+      "module": "CommonJS",
+      "strict": false,
+      "esModuleInterop": true,
+      "outDir": ".",
+      "baseUrl": ".",
+      "moduleResolution": "node",
+      "lib": [
+        "es6",
+        "dom",
+        "dom.iterable",
+        "esnext"
+      ],
+      "sourceMap": true
+    },
+    "include": ["./*.ts"],
+    "exclude": ["node_modules", "**/*.spec.ts"]
+  }
+  
+  

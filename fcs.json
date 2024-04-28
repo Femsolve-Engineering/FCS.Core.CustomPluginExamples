@@ -1,0 +1,16 @@
+{
+	"pluginName" : "P4MToolbox",
+    "backendServiceModules" : [
+        {
+            "sourceFile" : "P4MBackendServices.py",
+            "serviceClassName" : "GearShaftSculptorBackendService"
+        }
+    ],
+    "clientCodeSettings" : {
+        "clientCodeDir" : "client",
+        "loadPage" : "index.html"
+    },
+    "serviceCodeSettings" : {
+        "serviceCodeDir" : "service"
+    }
+}

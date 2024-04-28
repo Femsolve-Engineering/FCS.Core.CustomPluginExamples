@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html id="fcs_html">
+
+<head>
+    <title>FCS Custom Examples 1</title>
+</head>
+
+<style>
+    #fcs_body {
+        margin: 0;
+    }
+
+    #fcs-viewer {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        top: 0px;
+        left: 0px;
+
+        margin: 0;
+
+        background: linear-gradient(to bottom, rgb(188, 193, 224) 0%, rgb(36, 96, 145) 100%);
+    }
+</style>
+
+<body id="fcs_body">
+
+    <div id="fcs-viewer" style="visibility: hidden;"></div>
+
+    <script>
+        function loadScript(url, fallbackUrl, callback) {
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.onload = callback; // Call callback function after script loads
+
+            script.onerror = () => {
+                if (fallbackUrl) {
+                    console.warn(
+                        `Do not worry about the first loading error, it was to check if we are serving from webpack-server!`)
+
+                    // Create a new script tag for the fallback URL
+                    const fallbackScript = document.createElement('script');
+                    fallbackScript.type = 'module';
+                    fallbackScript.onload = callback;
+                    fallbackScript.src = fallbackUrl;
+                    document.head.appendChild(fallbackScript);
+                }
+            };
+
+            script.src = url;
+            document.head.appendChild(script);
+        }
+
+        const webpackServerURL = 'http://localhost:9000/FcsViewerBundle.js';
+        const fallbackURL = '/viewer-assets/FcsViewerBundle.js';
+
+        loadScript(webpackServerURL, fallbackURL, () => {
+            // Load Viewer.js after FcsViewerBundle.js
+            loadScript('/dist/exampleViewer.js', null, async () => {
+                const viewerModule = await import('/exampleViewer.js');
+                await Viewer.loadViewer();
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
