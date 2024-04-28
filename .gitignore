@@ -5,4 +5,5 @@ package-lock.json
 # Python
 env
 .pyc
+**/__pycache__/**
 

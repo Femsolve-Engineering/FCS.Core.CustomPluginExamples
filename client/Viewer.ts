@@ -8,6 +8,15 @@ declare const Femsolve: typeof import("fcs-core-viewer/fcs-core-viewer@types/Api
 // Viewer loading setup
 export const loadViewer = async () => {
 
+    class ExampleService implements Femsolve.CloudViewer.PluginService {
+        public getPluginName() : string {
+            return 'ExamplePlugin';
+        }
+        public getPluginClassName() : string {
+            return 'ExampleBackendService';
+        }
+    }
+
     // Store bearer token
     const viewerSessionToken = setAndGetViewerBearerTokenFromUrl();
 
@@ -35,5 +44,10 @@ export const loadViewer = async () => {
 
     // Start the viewer
     await viewer.startViewer();
+    
+    // Register the plugin
+    const pluginService = new ExampleService()
+    await viewer.loadPlugin(pluginService);
+    
     console.log(`Opening viewer...`)
 }
