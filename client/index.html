@@ -58,8 +58,8 @@
 
         loadScript(webpackServerURL, fallbackURL, () => {
             // Load Viewer.js after FcsViewerBundle.js
-            loadScript('/dist/exampleViewer.js', null, async () => {
-                const viewerModule = await import('/exampleViewer.js');
+            loadScript('/plugins/ExamplePlugin', null, async () => {
+                const viewerModule = await import('/plugins/ExamplePlugin');
                 await Viewer.loadViewer();
             });
         });

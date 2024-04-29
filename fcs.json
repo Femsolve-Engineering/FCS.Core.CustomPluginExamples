@@ -8,7 +8,8 @@
     ],
     "clientCodeSettings" : {
         "clientCodeDir" : "client",
-        "loadPage" : "index.html"
+        "loadPage" : "index.html",
+        "loadScript" : "dist/exampleViewer.js"
     },
     "serviceCodeSettings" : {
         "serviceCodeDir" : "service"

@@ -6,10 +6,12 @@ from fcs_core_model_engine import (
 
 class ExampleBackendService(BackendService):
 
-    def __init__(self, service_name: str):
+    def __init__(self, user_id: str, model_id: str, service_name: str):
         """
         Constructor.
         """
+        self.user_id = user_id
+        self.model_id = model_id
         super().__init__(service_name)
 
 #--------------------------------------------------------------------------------------------------
@@ -41,9 +43,10 @@ class ExampleBackendService(BackendService):
         """
 
         side_length = args['side_length']
-        geom_box = self.gb.make_box_dx_dy_dz(side_length, side_length, side_length)
-        box_id = self.fv.add_to_document(geom_box,'created_box')
-        self.fv.set_specific_object_color(box_id, 255,0,0)
+        # geom_box = self.gb.make_box_dx_dy_dz(side_length, side_length, side_length)
+        # box_id = self.fv.add_to_document(geom_box,'created_box')
+        # self.fv.set_specific_object_color(box_id, 255,0,0)
+        box_id = 5
         result = { "id": box_id }
         return result
 
@@ -55,11 +58,11 @@ class ExampleBackendService(BackendService):
         """
 
         filepath = args['input_file_path']
-        geom_file = self.gb.import_step(filepath, False)
-        geom_file_id = self.fv.add_to_document(geom_file,'loaded_geometry')
-        self.fv.set_specific_object_color(geom_file_id, 0, 0, 254)
+        geom_file = self.geometry_builder.import_step(filepath, False)
+        # geom_file_id = self.fv.add_to_document(geom_file,'loaded_geometry')
+        # self.fv.set_specific_object_color(geom_file_id, 0, 0, 254)
 
-        bbox = self.gb.get_bounding_box_shape(geom_file, False)
-        bbox_id = self.fv.add_to_document(bbox, 'bounding_box')
-        self.fv.set_specific_object_color(bbox_id, 0, 254, 0)
+        # bbox = self.gb.get_bounding_box_shape(geom_file, False)
+        # bbox_id = self.fv.add_to_document(bbox, 'bounding_box')
+        # self.fv.set_specific_object_color(bbox_id, 0, 254, 0)
         return {}

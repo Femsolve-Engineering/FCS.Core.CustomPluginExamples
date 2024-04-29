@@ -8,13 +8,31 @@ declare const Femsolve: typeof import("fcs-core-viewer/fcs-core-viewer@types/Api
 // Viewer loading setup
 export const loadViewer = async () => {
 
-    class ExampleService implements Femsolve.CloudViewer.PluginService {
+    class ExampleService extends Femsolve.CloudViewer.PluginService {
+
+        /************************************************************************************/
+        /* !!!!! COMPULSORY INTERFACE METHODS !!!!!
+         ************************************************************************************/
+
         public getPluginName() : string {
             return 'ExamplePlugin';
         }
         public getPluginClassName() : string {
             return 'ExampleBackendService';
         }
+
+        /************************************************************************************/
+        /* Commands
+         ************************************************************************************/
+        async runCreateRedCubeCommand(cubeSide: number=5) {
+            const response = await this.forwardCommand(
+                'create_red_cube',
+            {
+                side_length: cubeSide
+            })
+            console.log(`Created red cube finished: ${response.on_finished_arguments}`)
+        }
+    
     }
 
     // Store bearer token
@@ -48,6 +66,9 @@ export const loadViewer = async () => {
     // Register the plugin
     const pluginService = new ExampleService()
     await viewer.loadPlugin(pluginService);
+
+    // Run a custom command
+    pluginService.runCreateRedCubeCommand(10);
     
     console.log(`Opening viewer...`)
 }
