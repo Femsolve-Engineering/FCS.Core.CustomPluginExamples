@@ -1,7 +1,8 @@
 
 from fcs_core_model_engine import ( 
     BackendService,
-    fcs_command
+    fcs_command,
+    ColorSelection
 )
 
 class ExampleBackendService(BackendService):
@@ -42,11 +43,13 @@ class ExampleBackendService(BackendService):
         Creates a simple cube of given size.
         """
 
-        side_length = args['side_length']
-        # geom_box = self.gb.make_box_dx_dy_dz(side_length, side_length, side_length)
-        # box_id = self.fv.add_to_document(geom_box,'created_box')
-        # self.fv.set_specific_object_color(box_id, 255,0,0)
-        box_id = 5
+        side_length = int(args['side_length'])
+        box = self.geometry_builder.make_box_dx_dy_dz(side_length, side_length, side_length)
+        geom_cont_id = self.model_builder.get_container_id_by_name('Geometry')
+        box_id = self.cloud_model_communicator.add_geom_to_model(box, geom_cont_id, 'boxGeom')
+        self.cloud_model_communicator.set_instance_color(box_id, ColorSelection.RED)
+        self.cloud_model_communicator.center_view()
+        self.cloud_model_communicator.show_all()
         result = { "id": box_id }
         return result
 
