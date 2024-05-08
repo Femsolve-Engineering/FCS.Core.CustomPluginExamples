@@ -11,9 +11,7 @@ class ExampleBackendService(BackendService):
         """
         Constructor.
         """
-        self.user_id = user_id
-        self.model_id = model_id
-        super().__init__(service_name)
+        super().__init__(user_id, model_id, service_name)
 
 #--------------------------------------------------------------------------------------------------
 # Startup and finishing stages
