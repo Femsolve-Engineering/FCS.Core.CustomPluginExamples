@@ -9,7 +9,8 @@
     ],
     "clientCodeSettings" : {
         "clientCodeDir" : "client",
-        "loadPage" : "index.html",
+        "loadDeployedPage" : "index.template.html",
+        "loadLocalPage" : "index.local.html",
         "loadScript" : "dist/exampleViewer.js"
     },
     "serviceCodeSettings" : {

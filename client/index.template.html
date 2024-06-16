@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html id="fcs_html">
+
+<head>
+    <title>FCS Custom Examples</title>
+</head>
+
+<style>
+    #fcs_body {
+        margin: 0;
+    }
+
+    #fcs-viewer {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        top: 0px;
+        left: 0px;
+        margin: 0;
+        background: linear-gradient(to bottom, rgb(188, 193, 224) 0%, rgb(36, 96, 145) 100%);
+    }
+</style>
+
+<body id="fcs_body">
+
+    <div id="fcs-viewer" style="visibility: hidden;"></div>
+
+    <script>
+        function loadScript(url, callback) {
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.onload = callback;
+            script.src = url;
+            document.head.appendChild(script);
+        }
+
+        loadScript('/$dynamicallySetViewerContainerId/viewer-assets/fcs-core-viewer/FcsViewerBundle.js', () => {
+            loadScript('/$dynamicallySetViewerContainerId/viewer-assets/plugins/ExamplePlugin', async () => {
+                const viewerModule = await import('/$dynamicallySetViewerContainerId/viewer-assets/plugins/ExamplePlugin');
+                await Viewer.loadViewer();
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>

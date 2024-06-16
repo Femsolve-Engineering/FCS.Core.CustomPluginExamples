@@ -3,7 +3,7 @@
 <html id="fcs_html">
 
 <head>
-    <title>FCS Custom Examples 1</title>
+    <title>FCS Custom Examples - LOCAL</title>
 </head>
 
 <style>
@@ -15,12 +15,9 @@
         position: relative;
         width: 100%;
         height: 100%;
-
         top: 0px;
         left: 0px;
-
         margin: 0;
-
         background: linear-gradient(to bottom, rgb(188, 193, 224) 0%, rgb(36, 96, 145) 100%);
     }
 </style>
@@ -54,12 +51,11 @@
         }
 
         const webpackServerURL = 'http://localhost:9000/FcsViewerBundle.js';
-        const fallbackURL = '/viewer-assets/FcsViewerBundle.js';
+        const fallbackURL = '/viewer-assets/fcs-core-viewer/FcsViewerBundle.js';
 
         loadScript(webpackServerURL, fallbackURL, () => {
-            // Load Viewer.js after FcsViewerBundle.js
-            loadScript('/plugins/ExamplePlugin', null, async () => {
-                const viewerModule = await import('/plugins/ExamplePlugin');
+            loadScript('/viewer-assets/plugins/ExamplePlugin', null, async () => {
+                const viewerModule = await import('/viewer-assets/plugins/ExamplePlugin');
                 await Viewer.loadViewer();
             });
         });
