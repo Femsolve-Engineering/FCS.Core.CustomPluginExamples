@@ -38,7 +38,7 @@
         loadScript('/$dynamicallySetViewerContainerId/viewer-assets/fcs-core-viewer/FcsViewerBundle.js?session=$viewerSessionToken', () => {
             loadScript('/$dynamicallySetViewerContainerId/viewer-assets/plugins/ExamplePlugin?session=$viewerSessionToken', async () => {
                 const viewerModule = await import('/$dynamicallySetViewerContainerId/viewer-assets/plugins/ExamplePlugin?session=$viewerSessionToken');
-                await Viewer.loadViewer();
+                await Viewer.loadViewer("$viewerSessionToken", $dynamicallySetViewerContainerId);
             });
         });
 
