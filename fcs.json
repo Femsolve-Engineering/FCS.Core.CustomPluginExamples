@@ -1,6 +1,6 @@
 {
 	"pluginName" : "ExamplePlugin",
-	"pluginMode" : "extension",
+	"pluginMode" : "service",
     "backendServiceModules" : [
         {
             "sourceFile" : "fcs_example_service.py",
